@@ -12,7 +12,8 @@ class ToyDisplay extends Component {
         // </li>
         
         // <li>
-
+        // this.props.data.category?.products.map( (p, index) => 
+        // <span key={index}>{p.name}</span>
         // </li>
     }
 }

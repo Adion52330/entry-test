@@ -1,28 +1,30 @@
-// import React, { Component } from 'react';
-// import { graphql } from '@apollo/client/react/hoc';
-// import './collection-item.styles.scss'
-// import { getCategory } from '../../graphql/queries';
+import { graphql } from '@apollo/client/react/hoc';
+import React, { Component } from 'react';
+import { getCategory } from '../../graphql/queries';
 
-// class CollectionItem extends Component{
-//     render(){
-//         return(
-//             {
-//                 this.props.data?.products?.map(( product, index) =>(
-//                     <div className='collection-item'>
-//                         <div className='image'
-//                         style={{
-//                             backgroundImage:``}}
-                            
-//                         />
-//                         <div className='collection-footer'>
-//                             <span className='name'>{name}</span>
-//                             <span className='price'>{price}</span>
-//                         </div>
-//                     </div>
-//                 ))
-//             }
-//         )
-//     }
-// }
+import './collection-item.styles.scss';
 
-// export default graphql(getCategory)(CollectionItem)
+class CollectionItem extends Component{
+    render(){
+        return(
+            <div>
+                {this.props.data.category?.products.map((p,index) =>
+                <div className='collection-item' key={index}>
+                    <div 
+                    className='image'
+                    style={{ backgroundImage: p.gallery}}
+                    /> 
+                    <div className='collection-footer'> 
+                        <span className='name'>{p.name}</span>
+                        <span className='price'>{p.price}</span>
+                    </div>
+                </div>
+                )}
+            </div>
+        )
+    }
+};
+
+export default graphql(getCategory,{options: props => ({ 
+    variables: { input: { title: props.match.params.category}}
+})})(CollectionItem)
