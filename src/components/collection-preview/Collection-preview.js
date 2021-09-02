@@ -5,12 +5,14 @@ import { getCategory } from "../../graphql/queries";
 
 class CollectionPreview extends Component {
     render(){
+
+
         return(
             <div className='collection-preview'>
                 <h1 className='title'>COLLECTION PREVIEW</h1>
-                <h2>
+                {/* <h2>
                     {JSON.stringify(this.props)}
-                </h2>
+                </h2> */}
                 <div className='collection-item'>
                     <div className='image'
                     style={{
@@ -19,11 +21,10 @@ class CollectionPreview extends Component {
                     />
                     <div className='collection-footer'>
                         <h1>DIVIDER HERE</h1>
-                        { this.props.data.category.product.map( (p, index) => 
+                        { this.props.data.category?.products.map( (p, index) => 
                             <span key={index}>{p.name}</span>
                         )}
-                        {/* <span className='name'>{this.props.data.category.products.name}</span>
-                        <span className='price'>{this.props.data.category.products.price}</span> */}
+                        
                     </div>
                 </div>
             </div>
