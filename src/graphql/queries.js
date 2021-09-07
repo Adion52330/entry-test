@@ -34,6 +34,19 @@ query{
 }
 `
 
+export const getProduct = gql`
+query getProduct($id: String!){
+    product(id : $id){
+        name
+        products{
+            ...ProductFragment
+        }
+    }
+}
+${productFragment}
+`
+
+
 export const getCurrencies = gql`
 query{
     currencies

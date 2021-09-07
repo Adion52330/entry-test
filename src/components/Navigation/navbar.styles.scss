@@ -1,0 +1,9 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+
+    .menu-links a:first-child{
+     padding-right: 2em;
+    }
+}

@@ -1,22 +1,26 @@
-import React, { Component } from 'react';
-import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navigation/Navbar';
-// import CollectionPreview from './components/collection-preview/Collection-preview';
-import client from './graphql/client';
-import CollectionItem from './components/collection-item/Collection-item';
+import React, { Component } from "react";
+import {Switch, Route, Redirect } from "react-router-dom";
+import Navbar from "./components/Navigation/Navbar";
+
+import ProductPage from "./components/collection-item/ProductPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 export default class App extends Component {
-  render(){
-    return(
-      <ApolloProvider client={client}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path='/:category' component={CollectionItem} />
-        </Switch>
-      </Router>
-      </ApolloProvider>
-    )
-  }
+   render() {
+      return (
+         <div>
+               <Navbar />
+
+               <Switch>
+                  <Route exact path="/:category" component={ProductPage} />
+                  <Route
+                     path="/:category/:id"
+                     component={ProductDetailPage}
+                  />
+                  <Redirect to="/clothes" />
+               </Switch>
+               
+         </div>
+      );
+   }
 }

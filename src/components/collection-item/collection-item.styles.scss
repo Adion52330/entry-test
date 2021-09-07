@@ -33,3 +33,31 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+//NORMAL CSS STYLES
+.navigation{
+  color: blue;
+}
+
+.navigation h1{
+  font-size: 20px;
+}
+
+
+//SASS STYLES
+.navigation{
+  color: blue;
+
+  h1{
+    font-size: 20px;
+  }
+}
