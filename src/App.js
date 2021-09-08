@@ -5,10 +5,12 @@ import Navbar from "./components/Navigation/Navbar";
 import ProductPage from "./components/collection-item/ProductPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
+import './App.css'
+
 export default class App extends Component {
    render() {
       return (
-         <div>
+         <div className='body'>
                <Navbar />
 
                <Switch>

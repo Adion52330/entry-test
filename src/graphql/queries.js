@@ -37,10 +37,7 @@ query{
 export const getProduct = gql`
 query getProduct($id: String!){
     product(id : $id){
-        name
-        products{
-            ...ProductFragment
-        }
+        ...ProductFragment
     }
 }
 ${productFragment}

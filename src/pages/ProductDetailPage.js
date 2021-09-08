@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
-import { graphql } from '@apollo/client/react/hoc';
-import { getProduct } from '../graphql/queries';
+import React, { Component } from "react";
+import { graphql } from "@apollo/client/react/hoc";
+import { getProduct } from "../graphql/queries";
 
 class ProductDetailPage extends Component {
-    render(){
-        return (
-            <div>
-                <h1>PRODUCT DETAILS PAGE</h1>
-                {
-                    this.props.data.category?.products?.id?.map( (p,index) =>
-                    <span key={index}> {p.name} </span>
-                    )
-                }
-                
-            </div>
-        )
-    }
+   render() {
+      return (
+         <div>
+            <h1>PRODUCT DETAILS</h1>
+            <h2>{this.props.data?.product?.name}</h2>
+         </div>
+      );
+   }
 }
 
 export default graphql(getProduct, {
-    options: (props) => ({
-       variables: { id: { title: props.match.params.category.products }},
-    }),
- })(ProductDetailPage);
+   options: (props) => ({
+      variables: { id: props.match.params.id },
+   }),
+})(ProductDetailPage);

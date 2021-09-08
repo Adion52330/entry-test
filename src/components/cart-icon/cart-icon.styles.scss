@@ -15,7 +15,12 @@
     .item-count {
       position: absolute;
       font-size: 10px;
+      padding: 5px;
       font-weight: bold;
-      bottom: 12px;
+      background-color: black;
+      border-radius: 50%;
+      color: white;
+      bottom: 20px;
+      right: 10px;
     }
   }
