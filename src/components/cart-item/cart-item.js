@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import './cart-item.styles.scss'
+import React, { Component } from "react";
+import "./cart-item.styles.scss";
 
-class CartItem extends Component{
-    render(){
-        const {  name , price  } = this.props
-
-        return(
-            <div className='cart-item'>
-                <img src alt=''/>
-                <div className='item-details'>
-                    <span className='name'>{name}</span>
-                    <span className='price'>{price}</span>
-                </div>
-            </div>
-        )
-    }
+class CartItem extends Component {
+   render() {
+      const {item} = this.props
+      return (
+         <div className="cart-item">
+               <div>
+               <img src={item.gallery[0]} alt="product img" />
+                  <div className="item-details">
+                     <span className="name">{item.name}</span>
+                     <span className="price">{item.prices[0].currency}</span>
+                  </div>
+               </div>
+         </div>
+      );
+   }
 }
 
-export default CartItem
+export default CartItem;

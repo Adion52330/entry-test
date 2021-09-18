@@ -26,7 +26,7 @@ class ProductPage extends Component {
                         <Link to={`/${p.category}/${p.id}`}>
                            <div className="image-container">
                               <img
-                              className='image'
+                                 className="image"
                                  style={{
                                     backgroundImage: `url("${p.gallery[0]}")`,
                                  }}
@@ -39,9 +39,11 @@ class ProductPage extends Component {
                            <h3 className="price">
                               {p.prices[0].currency} {p.prices[0].amount}
                            </h3>
-                           <div className="show-cart-icon" onClick={() => addItem(addItem)}>
-                           <FontAwesomeIcon icon={faShoppingCart}/>
-                        </div>
+                           <div
+                              className="show-cart-icon"
+                              onClick={() => addItem(p)}>
+                              <FontAwesomeIcon icon={faShoppingCart} />
+                           </div>
                         </div>
                      </div>
                   ))}
@@ -53,8 +55,8 @@ class ProductPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-   addItem: item => dispatch(addItem(item))
-})
+   addItem: (item) => dispatch(addItem(item)),
+});
 
 const graph = graphql(getCategory, {
    options: (props) => ({
@@ -62,4 +64,4 @@ const graph = graphql(getCategory, {
    }),
 })(ProductPage);
 
-export default connect(null, mapDispatchToProps)(graph)
+export default connect(null, mapDispatchToProps)(graph);
