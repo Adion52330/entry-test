@@ -16,6 +16,7 @@ const CartDropdown = ({ cartItems }) => (
    </div>
 );
 
+//DESTRUCTURED IT OFF STATE
 const mapStateToProps = ({ cart: { cartItems } }) => ({
    cartItems: cartItems,
 });
