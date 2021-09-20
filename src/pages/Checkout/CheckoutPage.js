@@ -32,7 +32,7 @@ class CheckoutPage extends Component {
 
             {
                cartItems.map( cartItem => (
-                  <CheckoutItem key={cartItems.id} cartItems={cartItem} />
+                  <CheckoutItem key={cartItem.id} cartItems={cartItem} />
                ))
             }
 
