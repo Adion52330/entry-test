@@ -5,13 +5,13 @@ const selectCart = (state) => state.cart;
 export const selectCartItems = createSelector(
    selectCart,
    //FUNCTION TO RETURN VALUE
-   (cart) => cart.cartItems
+   (cart) => {console.log(cart); return cart.cartItems}
 );
 
 export const selectCartItemsCount = createSelector(
-   selectCartItems,
+   [selectCartItems],
    (cartItems) =>{
-      cartItems.reduce(
+      return cartItems.reduce(
          (accumulatedQuantity, cartItem) =>
             accumulatedQuantity + cartItem.quantity,
          0
@@ -21,16 +21,15 @@ export const selectCartItemsCount = createSelector(
 
 export const selectCartTotal = createSelector(
    selectCartItems,
-   (cartItems) => {
-    cartItems.reduce(
+    (cartItems) => {
+   // console.log(cartItems);
+    return cartItems.reduce(
          (accumulatedQuantity, cartItem) =>
             accumulatedQuantity + cartItem.quantity * cartItem.price,
          0
       )
    }
 )
-
-
 
 // SELECTORS TO MAKE SURE THESE COMPONENTS DONT GET RENDER WHEN THERE'S 
 // CHANGES IN COMPONENTS WHICH AREN'T RELATED TO THEM

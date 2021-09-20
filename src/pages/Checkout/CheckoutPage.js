@@ -29,9 +29,9 @@ class CheckoutPage extends Component {
                </div>
             </div>
 
-            {/* {
+            {
                cartItems.map( cartItem => cartItem.name)
-            } */}
+            }
 
             <div className='total'>
                <span>total:{total}</span>
@@ -42,10 +42,10 @@ class CheckoutPage extends Component {
    }
 }
 
-const mapStateToProps = createStructuredSelector({
-   // cartItems: selectCartItems,
+const mapStateToProps = state => createStructuredSelector({
+   cartItems: selectCartItems,
    total: selectCartTotal
-})
+})(state)
 
 
 export default connect(mapStateToProps)(CheckoutPage)
