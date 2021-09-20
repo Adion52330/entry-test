@@ -42,17 +42,8 @@ class CheckoutPage extends Component {
    }
 }
 
-// const mapStateToProps = state => createStructuredSelector({
-//    cartItems: selectCartItems,
-//    total: selectCartTotal
-// })(state)
-
-const mapStateToProps = state =>
-  {
-  console.log(state)
-  return {
-   cartItems: selectCartItems(state),
-   total: selectCartTotal(state)
-  }}
-
+const mapStateToProps = createStructuredSelector({
+   cartItems: selectCartItems,
+   total: selectCartTotal
+})
 export default connect(mapStateToProps)(CheckoutPage)
