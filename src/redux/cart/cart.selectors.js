@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
-const selectCart = (state) => state.cart;
+// const selectCart = (state) => state.cart;
+const selectCart = (state) => {console.log(state); return state.cart;}
 
 export const selectCartItems = createSelector(
    selectCart,
@@ -19,17 +20,14 @@ export const selectCartItemsCount = createSelector(
    }
 );
 
-export const selectCartTotal = createSelector(
-   selectCartItems,
-    (cartItems) => {
+export const selectCartTotal = createSelector(selectCartItems, (cartItems) => {
    // console.log(cartItems);
-    return cartItems.reduce(
-         (accumulatedQuantity, cartItem) =>
-            accumulatedQuantity + cartItem.quantity * cartItem.price,
-         0
-      )
-   }
-)
+   return cartItems.reduce(
+     (accumulatedQuantity, cartItem) =>
+       accumulatedQuantity + cartItem.quantity * cartItem.prices[0].amount,
+     0
+   );
+ });
 
 // SELECTORS TO MAKE SURE THESE COMPONENTS DONT GET RENDER WHEN THERE'S 
 // CHANGES IN COMPONENTS WHICH AREN'T RELATED TO THEM
