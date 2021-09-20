@@ -10,7 +10,7 @@ class CartItem extends Component {
                <img src={item.gallery[0]} alt="product img" />
                   <div className="item-details">
                      <span className="name">{item.name}</span>
-                     <span className="price">{item.prices[0].currency}</span>
+                     <span className="price">{item.prices[0].amount}</span>
                   </div>
                </div>
          </div>
