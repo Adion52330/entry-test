@@ -1,20 +1,20 @@
-import CurrencyActionTypes from "./currency.types"
+import CurrencyActionTypes from "./currency.types";
 
 const INITIAL_STATE = {
-    currencies: []
-}
+  currency: "USD",
+};
 
-const currencyReducer = ( state = INITIAL_STATE, action ) => {
-   switch (action.type) {
-       case CurrencyActionTypes.TOGGLE_CURRENCY:
-           return{
-            ...state,
-            currencies:[...state.currencies, action.payload] 
-           }
-   
-       default:
-           return state;
-   }
-}
+const currencyReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case CurrencyActionTypes.SELECT_CURRENCY:
+      return {
+        ...state,
+        currency: action.payload,
+      };
 
-export default  currencyReducer;
+    default:
+      return state;
+  }
+};
+
+export default currencyReducer;

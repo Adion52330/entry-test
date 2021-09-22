@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
 
-const selectCurrency = (state) => state.currency;
-console.log(selectCurrency)
+const state = (state) => state.currency;
+
+export const selectCurrency = createSelector(state, (c) => c.currency);

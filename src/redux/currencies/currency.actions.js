@@ -1,6 +1,6 @@
-import CurrencyActionTypes from './currency.types'
+import CurrencyActionTypes from "./currency.types";
 
-export const toggleCurrency = (currency) => ({
-    type: CurrencyActionTypes.TOGGLE_CURRENCY,
-    payload: currency
-})
+export const selectCurrency = (currency) => ({
+  type: CurrencyActionTypes.SELECT_CURRENCY,
+  payload: currency,
+});
