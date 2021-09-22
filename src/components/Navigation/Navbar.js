@@ -5,6 +5,7 @@ import { graphql } from "@apollo/client/react/hoc";
 import { getCategories } from "../../graphql/queries";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
+import CurrencyDropdown from "../currency-dropdown/currency-dropdown";
 
 import "./navbar.styles.scss";
 
@@ -20,6 +21,9 @@ class Navbar extends Component {
                         {cat.name}
                      </Link>
                   ))}
+               </div>
+               <div>
+                  <CurrencyDropdown />
                </div>
                <div>
                   <CartIcon />

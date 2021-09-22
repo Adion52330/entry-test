@@ -12,7 +12,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 class ProductPage extends Component {
    render(props) {
-      console.log(this.props.data);
+      
       const { addItem } = this.props;
       return (
          <div className="category-page">
