@@ -45,6 +45,7 @@ class ProductPage extends Component {
                               ).amount
                            }
                         </h3>
+                        
                         <div
                            className="add-to-cart"
                            onClick={() => addItem(product)}>

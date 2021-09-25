@@ -75,7 +75,11 @@ class ProductDetailPage extends Component {
                   </h3>
                </div>
                <div className="add-to-cart">
-                  <button onClick={ () => addItem(this.props.data.product)} >add to cart</button>
+                  {this.props.data?.product && (
+                     <button onClick={() => addItem(this.props.data?.product)}>
+                        add to cart
+                     </button>
+                  )}
                </div>
                <div
                   className="description"
