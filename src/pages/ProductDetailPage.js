@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import { graphql } from "@apollo/client/react/hoc";
 import { getProduct } from "../graphql/queries";
 
-// import '../assets/sass/_colors_fonts.scss'
+import { addItem } from "../redux/cart/cart.actions";
+import { selectCurrency } from "../redux/currencies/currency.selectors";
+
 import "./productdetail.styles.scss";
+import { connect } from "react-redux";
 
 class ProductDetailPage extends Component {
    render() {
-      // const hasAttr = (product, attrId) => product.attributes.some(attr => attr.id=== attrId) ;
-      // const hasColor = hasAttr(product, "Color");
+      const { currency } = this.props;
+
+      const hasAttr = (attrId) =>
+         this.props.data?.product?.attributes?.some(
+            (attr) => attr.id === attrId
+         );
+
       return (
          <div className="product-page">
-            {/* {JSON.stringify(this.props.data)} */}
             {console.log(this.props.data?.product)}
             <div className="product-page__gallery">
                <img src={this.props.data?.product?.gallery[1]} alt="" />
@@ -25,21 +32,50 @@ class ProductDetailPage extends Component {
                <h2 className="name">{this.props.data?.product?.name}</h2>
                <p className="brand">{this.props.data?.product?.brand}</p>
                <div className="size">
-                  <p>SIZE</p>
                   <div className="size__options">
-                     {/* {hasColor && product.attributes.find(attr => attr.id === 'Color').map(color => <p>{color.value}</p>)} */}
-                     {/* <div className="box">{this.props.data?.product?.attributes.items[0].value}</div> */}
-                     <div className="box">s</div>
-                     <div className="box">m</div>
-                     <div className="box">l</div>
+                     {hasAttr("Size") &&
+                        this.props.data?.product?.attributes
+                           .find((attr) => attr.id === "Size")
+                           .items.map((attr) => (
+                              <div className="box" key={attr.value}>
+                                 {attr.value}
+                              </div>
+                           ))}
+                  </div>
+                  <div className="size__options">
+                     {hasAttr("Color") &&
+                        this.props.data?.product?.attributes
+                           .find((attr) => attr.id === "Color")
+                           .items.map((attr) => (
+                              <div className="box" key={attr.value}>
+                                 {attr.value}
+                              </div>
+                           ))}
+                  </div>
+                  <div className="size__options">
+                     {hasAttr("Capacity") &&
+                        this.props.data?.product?.attributes
+                           .find((attr) => attr.id === "Capacity")
+                           .items.map((attr) => (
+                              <div className="box" key={attr.value}>
+                                 {attr.value}
+                              </div>
+                           ))}
                   </div>
                </div>
                <div className="price">
                   <p>price:</p>
-                  <h3>{this.props.data?.product?.price}</h3>
+                  <h3>
+                     {currency}{" "}
+                     {
+                        this.props.data?.product?.prices.find(
+                           (price) => price.currency === currency
+                        ).amount
+                     }
+                  </h3>
                </div>
                <div className="add-to-cart">
-                  <button>add to cart</button>
+                  <button onClick={ () => addItem(this.props.data.product)} >add to cart</button>
                </div>
                <div
                   className="description"
@@ -52,8 +88,18 @@ class ProductDetailPage extends Component {
    }
 }
 
-export default graphql(getProduct, {
+const mapStateToProps = (state) => ({
+   currency: selectCurrency(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+   addItem: (item) => dispatch(addItem(item)),
+});
+
+const graph = graphql(getProduct, {
    options: (props) => ({
       variables: { id: props.match.params.id },
    }),
 })(ProductDetailPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(graph);

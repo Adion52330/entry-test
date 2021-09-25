@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 class ProductPage extends Component {
-   render(props) {
+   render() {
       const { addItem, currency } = this.props;
       return (
          <div>
