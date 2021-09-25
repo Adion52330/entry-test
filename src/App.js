@@ -5,9 +5,6 @@ import Navbar from "./components/Navigation/Navbar";
 import ProductPage from "./components/collection-item/ProductPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CheckoutPage from './pages/Checkout/CheckoutPage';
-
-import './App.css'
-
 export default class App extends Component {
    render() {
       return (

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { graphql } from "@apollo/client/react/hoc";
 import { getCategories } from "../../graphql/queries";
@@ -13,24 +13,26 @@ class Navbar extends Component {
    render() {
       const { hidden } = this.props;
       return (
-         <div>
+         <React.Fragment>
             <nav>
                <div className="menu-links">
                   {this.props.data?.categories?.map((cat, index) => (
-                     <Link key={index} to={`/${cat.name}`}>
+                     <NavLink
+                        key={index}
+                        to={`/${cat.name}`}
+                        activeClassName="active">
                         {cat.name}
-                     </Link>
+                     </NavLink>
                   ))}
                </div>
-               <div>
-                  <CurrencyDropdown />
-               </div>
-               <div>
+               <div>LOGO</div>
+               <div className="misc">
                   <CartIcon />
+                  <CurrencyDropdown />
                </div>
             </nav>
             {hidden ? null : <CartDropdown />}
-         </div>
+         </React.Fragment>
       );
    }
 }

@@ -9,7 +9,6 @@ import { getCurrencies } from "../../graphql/queries";
 class CurrencyDropdown extends Component {
   render() {
     return (
-      <div>
         <select
           name="currencies"
           id="currencies"
@@ -19,7 +18,6 @@ class CurrencyDropdown extends Component {
             <option key={index}> {currency} </option>
           ))}
         </select>
-      </div>
     );
   }
 }

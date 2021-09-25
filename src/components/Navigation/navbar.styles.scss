@@ -3,7 +3,27 @@ nav{
     justify-content: space-between;
     padding-top: 1em;
 
-    .menu-links a:first-child{
+    a{
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 1em;
+        position: relative;
+    }
+
+    .active::before{        
+        content: "";
+        position: absolute;
+        left: 5px;
+        bottom: 0;
+        height: 15px;
+        width: 80%;
+        border-bottom: 2px solid #000;
+    }
+
+    
+
+    .menu-links a:first-child, .misc a:first-child{
      padding-right: 2em;
     }
+
 }
