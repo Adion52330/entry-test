@@ -15,10 +15,8 @@ class ProductPage extends Component {
    render() {
       const { addItem, currency } = this.props;
 
-      const hasAttr = (attrId) =>
-         this.props.data?.category?.products?.some(
-            (attr) => attr.id === attrId
-         );
+      const hasAttr = (product, attrId) =>
+         product.attributes?.some((attr) => attr.id === attrId);
 
       return (
          <div>
@@ -29,9 +27,11 @@ class ProductPage extends Component {
             </div>
             <section className="cards">
                {console.log(
-                  this.props.data?.category?.products.filter((obj) =>
-                     obj.attributes.some((attr) => attr.id === "Color")
-                  ).map(obj => obj.value)
+                  this.props.data?.category?.products
+                     .filter((obj) =>
+                        obj.attributes.some((attr) => attr.id === "Color")
+                     )
+                     .map((obj) => obj.value)
                )}
 
                {this.props.data?.category?.products.map((product, index) => (
@@ -51,40 +51,17 @@ class ProductPage extends Component {
                         <p className="card__title">{product.name}</p>
 
                         <div className="card__options">
-                           {/* {hasAttr("Color") &&
-                              this.props.data?.category?.products
+                           {hasAttr(product, "Color") &&
+                              product.attributes
                                  .find((attr) => attr.id === "Color")
                                  .items.map((attr) => (
-                                    <div className="box" key={attr.value}>
-                                       {attr.value}
-                                    </div>
-                                 ))} */}
-                           {/* {console.log(
-                              product.attributes.find(
-                                 (attr) => attr.id === "Color"
-                              )
-                           )} */}
-                           {/* {
-                              product.filter( (obj) => obj.attributes.some(attr => attr.id === "Color")).map((attr) => (
-                                 <p> {attr.value} </p>
-                              ))
-                           } */}
-
-                           {/* {
-                             console.log(
-                                product.attributes.find(attr => attr.id === 'Color')
-                             )
-                          } */}
-
-                           {product.attributes.map((attr, index) => (
-                              <div
-                                 className="box"
-                                 key={index}
-                                 style={{
-                                    backgroundColor: attr.value,
-                                 }}></div>
-                           ))}
-                           {/* {console.log(product.attributes)} */}
+                                    <div
+                                       className="box"
+                                       key={attr.value}
+                                       style={{
+                                          backgroundColor: attr.value,
+                                       }}></div>
+                                 ))}
                         </div>
                         <h3 className="card__price">
                            {currency}{" "}
@@ -104,11 +81,6 @@ class ProductPage extends Component {
                   </div>
                ))}
             </section>
-            {/* {
-                  this.props.data?.category?.products.filter(
-                     (obj) => obj.attributes.some(attr => attr.id === "Color")
-                   ).map(a => <p> {a.value} </p>)
-               } */}
          </div>
       );
    }
