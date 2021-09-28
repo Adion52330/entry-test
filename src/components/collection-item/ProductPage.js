@@ -14,6 +14,12 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 class ProductPage extends Component {
    render() {
       const { addItem, currency } = this.props;
+
+      const hasAttr = (attrId) =>
+         this.props.data?.category?.products?.some(
+            (attr) => attr.id === attrId
+         );
+
       return (
          <div>
             <div className="category">
@@ -22,6 +28,12 @@ class ProductPage extends Component {
                </div>
             </div>
             <section className="cards">
+               {console.log(
+                  this.props.data?.category?.products.filter((obj) =>
+                     obj.attributes.some((attr) => attr.id === "Color")
+                  ).map(obj => obj.value)
+               )}
+
                {this.props.data?.category?.products.map((product, index) => (
                   <div className="card" key={index}>
                      <Link
@@ -37,6 +49,43 @@ class ProductPage extends Component {
                      </Link>
                      <div className="card__content">
                         <p className="card__title">{product.name}</p>
+
+                        <div className="card__options">
+                           {/* {hasAttr("Color") &&
+                              this.props.data?.category?.products
+                                 .find((attr) => attr.id === "Color")
+                                 .items.map((attr) => (
+                                    <div className="box" key={attr.value}>
+                                       {attr.value}
+                                    </div>
+                                 ))} */}
+                           {/* {console.log(
+                              product.attributes.find(
+                                 (attr) => attr.id === "Color"
+                              )
+                           )} */}
+                           {/* {
+                              product.filter( (obj) => obj.attributes.some(attr => attr.id === "Color")).map((attr) => (
+                                 <p> {attr.value} </p>
+                              ))
+                           } */}
+
+                           {/* {
+                             console.log(
+                                product.attributes.find(attr => attr.id === 'Color')
+                             )
+                          } */}
+
+                           {product.attributes.map((attr, index) => (
+                              <div
+                                 className="box"
+                                 key={index}
+                                 style={{
+                                    backgroundColor: attr.value,
+                                 }}></div>
+                           ))}
+                           {/* {console.log(product.attributes)} */}
+                        </div>
                         <h3 className="card__price">
                            {currency}{" "}
                            {
@@ -45,7 +94,7 @@ class ProductPage extends Component {
                               ).amount
                            }
                         </h3>
-                        
+
                         <div
                            className="add-to-cart"
                            onClick={() => addItem(product)}>
@@ -55,6 +104,11 @@ class ProductPage extends Component {
                   </div>
                ))}
             </section>
+            {/* {
+                  this.props.data?.category?.products.filter(
+                     (obj) => obj.attributes.some(attr => attr.id === "Color")
+                   ).map(a => <p> {a.value} </p>)
+               } */}
          </div>
       );
    }

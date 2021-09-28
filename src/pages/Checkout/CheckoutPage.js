@@ -18,19 +18,18 @@ class CheckoutPage extends Component {
       <div className="checkout-page">
         <div className='cart'>
           <div className='cart__title'>
+            <h2>CART</h2>
           </div>
           <hr/>
-        {cartItems.map((cartItem) => (
-          <CheckoutItem key={cartItem.id} cartItems={cartItem} />
-        ))}
+            {cartItems.map((cartItem) => (
+              <CheckoutItem key={cartItem.id} cartItems={cartItem} />
+            ))}
+            
         </div>
 
-
-        <div className="total">
-          <span>
-            total:{total} {currency}
-          </span>
-        </div>
+        <div class="checkout-page__total">
+         <h1 class="total-price">Total: {currency} {total}</h1>
+         </div>
       </div>
     );
   }

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 class ProductDetailPage extends Component {
    render() {
-      const { currency } = this.props;
+      const { currency, addItem } = this.props;
 
       const hasAttr = (attrId) =>
          this.props.data?.product?.attributes?.some(
@@ -47,8 +47,9 @@ class ProductDetailPage extends Component {
                         this.props.data?.product?.attributes
                            .find((attr) => attr.id === "Color")
                            .items.map((attr) => (
-                              <div className="box" key={attr.value}>
-                                 {attr.value}
+                              <div className="box" key={attr.value}
+                              style={{ backgroundColor: attr.value}}
+                              >
                               </div>
                            ))}
                   </div>
@@ -60,6 +61,7 @@ class ProductDetailPage extends Component {
                               <div className="box" key={attr.value}>
                                  {attr.value}
                               </div>
+                              
                            ))}
                   </div>
                </div>
