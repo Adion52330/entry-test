@@ -28,10 +28,7 @@ class ProductPage extends Component {
             <section className="cards">
                {console.log(
                   this.props.data?.category?.products
-                     .filter((obj) =>
-                        obj.attributes.some((attr) => attr.id === "Color")
-                     )
-                     .map((obj) => obj.value)
+                    
                )}
 
                {this.props.data?.category?.products.map((product, index) => (
@@ -63,6 +60,30 @@ class ProductPage extends Component {
                                        }}></div>
                                  ))}
                         </div>
+                        <div className="card__options">
+                           {hasAttr(product, "Capacity") &&
+                              product.attributes
+                                 .find((attr) => attr.id === "Capacity")
+                                 .items.map((attr) => (
+                                    <div
+                                       className="box"
+                                       key={attr.value}>
+                                       {attr.value} </div>
+                                 ))}
+                        </div>
+                        <div className="card__options">
+                                 
+                           {  
+                           hasAttr(product, "Size") &&
+                              product.attributes
+                                 .find((attr) => attr.id === "Size")
+                                 .items.map((attr) => (
+                                    <div
+                                       className="box"
+                                       key={attr.value}> {attr.value} </div>
+                                 ))}
+                        </div>
+                        
                         <h3 className="card__price">
                            {currency}{" "}
                            {
