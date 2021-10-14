@@ -26,11 +26,6 @@ class ProductPage extends Component {
                </div>
             </div>
             <section className="cards">
-               {console.log(
-                  this.props.data?.category?.products
-                    
-               )}
-
                {this.props.data?.category?.products.map((product, index) => (
                   <div className="card" key={index}>
                      <Link
@@ -52,12 +47,13 @@ class ProductPage extends Component {
                               product.attributes
                                  .find((attr) => attr.id === "Color")
                                  .items.map((attr) => (
-                                    <div
+                                    <button
+                                       onClick
                                        className="box"
                                        key={attr.value}
                                        style={{
                                           backgroundColor: attr.value,
-                                       }}></div>
+                                       }}></button>
                                  ))}
                         </div>
                         <div className="card__options">
@@ -65,25 +61,23 @@ class ProductPage extends Component {
                               product.attributes
                                  .find((attr) => attr.id === "Capacity")
                                  .items.map((attr) => (
-                                    <div
-                                       className="box"
-                                       key={attr.value}>
-                                       {attr.value} </div>
+                                    <button className="box" key={attr.value}>
+                                       {attr.value}{" "}
+                                    </button>
                                  ))}
                         </div>
                         <div className="card__options">
-                                 
-                           {  
-                           hasAttr(product, "Size") &&
+                           {hasAttr(product, "Size") &&
                               product.attributes
                                  .find((attr) => attr.id === "Size")
                                  .items.map((attr) => (
-                                    <div
-                                       className="box"
-                                       key={attr.value}> {attr.value} </div>
+                                    <button className="box" key={attr.value}>
+                                       {" "}
+                                       {attr.value}{" "}
+                                    </button>
                                  ))}
                         </div>
-                        
+
                         <h3 className="card__price">
                            {currency}{" "}
                            {

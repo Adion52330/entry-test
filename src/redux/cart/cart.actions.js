@@ -1,5 +1,10 @@
 import CartActionTypes from "./cart.types";
 
+export const selectAttribute = (attribute) => ({
+   type:CartActionTypes.SELECT_ATTRIBUTE,
+   payload: attribute
+})
+
 export const toggleCartHidden = () => ({
    type: CartActionTypes.TOGGLE_CART_HIDDEN,
 });

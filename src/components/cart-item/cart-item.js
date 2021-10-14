@@ -6,23 +6,36 @@ import { selectCurrency } from "../../redux/currencies/currency.selectors";
 class CartItem extends Component {
    render() {
       const { currency, item } = this.props;
+
+      const hasAttr = (item, attrId) =>
+         item.attributes?.some((attr) => attr.id === attrId);
+
       return (
-         <div class="cart__body">
-            <div class="details">
-               <h2 class="name">{item.name}</h2>
-               <h3 class="brand">{item.brand}</h3>
-               <p class="price">{getPrice(currency, item)}</p>
-               <div class="size">
-                  <div class="size__type box">S</div>
-                  <div class="size__type box">M</div>
+         <div className="cart__body">
+            <div className="details">
+               <h2 className="name">{item.name}</h2>
+               <h3 className="brand">{item.brand}</h3>
+               <p className="price">{getPrice(currency, item)}</p>
+               <div className="size">
+                  <div className="size__type box">
+                     {hasAttr(item, "Size") &&
+                        item.attributes
+                           .find((attr) => attr.id === "Size")
+                           .items.map((attr) => (
+                              <div className="box" key={attr.value}>
+                                 {" "}
+                                 {attr.value}{" "}
+                              </div>
+                           ))}
+                  </div>
                </div>
             </div>
-            <div class="quantity">
-               <span class="increase box">+</span>
-               <span class="number">1</span>
-               <span class="decrease box">-</span>
+            <div className="quantity">
+               <span className="increase box">+</span>
+               <span className="number">1</span>
+               <span className="decrease box">-</span>
             </div>
-            <div class="image">
+            <div className="image">
                <img src={item.gallery[0]} alt="product img" />
             </div>
          </div>
